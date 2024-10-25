@@ -8,7 +8,6 @@ import os
 # Инициализация модели SentenceTransformer
 model_bert = SentenceTransformer('paraphrase-MiniLM-L6-v2')
 
-
 # Функция для загрузки текста из .docx файла
 def load_instruction_text(doc_path):
     try:
@@ -19,29 +18,35 @@ def load_instruction_text(doc_path):
         print(f"Ошибка при загрузке файла {doc_path}: {e}")
         return None
 
-
 # Создание эмбеддингов для названий файлов
 def create_filename_embeddings(file_names):
     return model_bert.encode(file_names, convert_to_tensor=False)
 
+# Функция для проверки точного совпадения ключевых слов
+def keyword_match(filename, keywords):
+    return any(keyword in filename.lower() for keyword in keywords)
 
 # Функция для двухэтапного поиска
-def find_best_instruction(query, folder_path, filename_embeddings, file_names, threshold_filename=0.5,
+def find_best_instruction(query, folder_path, filename_embeddings, file_names, threshold_filename=0.3,
                           threshold_instruction=0.3):
     # Этап 1: Сравнение с эмбеддингами названий файлов
     query_embedding = model_bert.encode([query], convert_to_tensor=False)
     query_embedding = np.squeeze(query_embedding)  # Убираем лишние измерения, если они есть
+    keywords = query.lower().split()  # ключевые слова из запроса
 
     # Проверяем, что filename_embeddings двумерный массив
     filename_embeddings = np.array(filename_embeddings)
     if filename_embeddings.ndim != 2:
         filename_embeddings = np.squeeze(filename_embeddings)
 
-    # Теперь выполняем вычисление сходства
-    similarities = cosine_similarity([query_embedding], filename_embeddings).flatten()
+    # Шаг 1: Точное совпадение ключевых слов в названии
+    candidate_indices = [i for i, file_name in enumerate(file_names) if keyword_match(file_name, keywords)]
 
-    # Фильтруем файлы по названию, учитывая только те, у которых сходство выше порога
-    candidate_indices = [i for i, score in enumerate(similarities) if score >= threshold_filename]
+    # Если нет совпадений по ключевым словам, переходим к embedding-сравнению
+    if not candidate_indices:
+        similarities = cosine_similarity([query_embedding], filename_embeddings).flatten()
+        candidate_indices = [i for i, score in enumerate(similarities) if score >= threshold_filename]
+
     if not candidate_indices:
         return None, "К сожалению, подходящей инструкции не найдено на основе названия файлов."
 
@@ -73,9 +78,8 @@ def find_best_instruction(query, folder_path, filename_embeddings, file_names, t
 
     return best_instruction, best_similarity
 
-
 # Основная часть кода
-def main(query, folder_path, threshold_filename=0.5, threshold_instruction=0.3):
+def main(query, folder_path, threshold_filename=0.3, threshold_instruction=0.3):
     # Проверка существования папки с инструкциями
     if not os.path.exists(folder_path):
         print(f"Папка {folder_path} не найдена.")
@@ -102,9 +106,8 @@ def main(query, folder_path, threshold_filename=0.5, threshold_instruction=0.3):
     else:
         print(similarity_score)
 
-
 # Пример запроса пользователя
 if __name__ == "__main__":
-    query = "Network connection problem"
+    query = "How can I troubleshoot issues with freezing on my laptop?"
     folder_path = "documentation"
     main(query, folder_path)
