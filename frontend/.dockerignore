@@ -1,0 +1,70 @@
+# Node modules и кэш-папки
+node_modules
+dist
+build
+.vscode/*
+!.vscode/extensions.json
+.cache
+tmp
+logs
+coverage
+.idea
+out
+
+# Логи и временные файлы
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Конфигурации редактора и IDE
+*.swp
+*.swo
+*.swn
+*.bak
+*.tmp
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Локальные конфигурационные файлы и переменные окружения
+.env
+.env.*
+*.local
+
+# Docker и git файлы
+.git
+.gitignore
+.gitattributes
+.dockerignore
+.gitkeep
+.husky
+.prettierrc
+.prettierrc.*
+.eslintrc
+.eslintrc.*
+.editorconfig
+
+# Пакеты и зависимости
+package-lock.json
+pnpm-lock.yaml
+yarn.lock
+
+# Файлы сборки и сервисов CI/CD
+tsconfig.build.ts
+*.tsbuildinfo
+.vscode-test
+*.pid
+.nyc_output
+cypress/videos
+cypress/screenshots
+
+# OS-specific папки
+node_modules/
+.vscode/
+.DS_Store
+coverage/
+npm-debug.log*
+logs/
+tmp/
