@@ -16,7 +16,7 @@ import random
 import nltk
 
 # Загрузка данных
-data = pd.read_csv("data/dataset_.csv", encoding='ISO-8859-1', sep=';')
+data = pd.read_csv("data_training/dataset_.csv", encoding='ISO-8859-1', sep=';')
 data.rename(columns={'¹': '№'}, inplace=True)
 
 # Предобработка текста
