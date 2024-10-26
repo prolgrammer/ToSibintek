@@ -1,9 +1,32 @@
+import { getSession } from "@entities/session"
 import { TreeRequests } from "@features/TreeRequests"
 import { ChatWindow } from "@widgets/ChatWindow"
 import { Splitter } from "antd"
+import { useEffect } from "react"
 import styled from "styled-components"
+import Cookies from "js-cookie"
+import { useDispatch } from "react-redux"
+import { AppDispatch } from "app/store"
+import { webSocketSlice } from "@entities/webSocketSlice"
 
 export const ExampleChatPage = () => {
+  const dispatch: AppDispatch = useDispatch()
+
+  useEffect( () => {
+    const fetchSession = async () => {
+      try {
+        const response = await getSession()
+        Cookies.set("sessionId", response)
+      } catch (error) {
+        console.error(error)
+      }
+    }
+
+    dispatch(webSocketSlice.actions.connect())
+
+    fetchSession()
+  }, [dispatch])
+
   return (
     <>
       <Splitter>
