@@ -3,6 +3,7 @@ import bg from '@public/bgCity.svg'
 import { Button, Flex } from "antd"
 import { useNavigate } from "react-router-dom"
 import logo from "@public/logo.svg"
+import { SITES_NAME } from "@shared/constants"
 
 export const WelcomeHero = () => {
   const navigate = useNavigate()
@@ -11,16 +12,15 @@ export const WelcomeHero = () => {
       <FlexContainer justify="space-between" align="center">
         <h3>
           <img src={logo} alt="logo" style={{marginRight: '10px'}}/>
-          Deadline Destroyers
+          {SITES_NAME}
         </h3>
         <div>
           <Button
             type="primary"
-            size="large"
             onClick={() => navigate('/chat')}
           >
             Попробовать
-          </Button>
+          </Button> 
         </div>
       </FlexContainer>
       <Content>
