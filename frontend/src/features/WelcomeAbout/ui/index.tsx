@@ -1,8 +1,8 @@
-// import chatIcon from '@public/icon/chat-icon.svg'
-// import uploadIcon from '@public/icon/upload-icon.svg'
-// import codeIcon from '@public/icon/code-icon.svg'
-// import messageIcon from '@public/icon/message-icon.svg'
-// import bgIntegration from '@public/bg-Integration.svg'
+import sign from '@public/icon/sign.svg'
+import tree from '@public/icon/tree.svg'
+import loop from '@public/icon/loop.svg'
+import folder from '@public/icon/folder.svg'
+import bg from '@public/whitebg.svg'
 import styled from 'styled-components'
 
 export const WelcomeAbout = () => {
@@ -12,42 +12,42 @@ export const WelcomeAbout = () => {
         <h1>Найди ответ за считанные секунды</h1>
         <Grid>
           <CardLayout>
-            {/* <Icon src={chatIcon} alt="chat icon" /> */}
+            <Icon src={sign} alt="sign icon" />
             <h2>
-              Пройди регистрацию
+              Отправьте запрос  
             </h2>
             <Description>
-              Пройди регистрацию и получи уникальный токен, который понадобиться для интеграции чат-бота на своем сайте
+              Заполните форму, указывая все атрибуты
             </Description>
           </CardLayout>
           
           <CardLayout>
-            {/* <Icon src={uploadIcon} alt="upload icon" /> */}
+            <Icon src={tree} alt="tree icon" />
             <h2>
-              Пройди регистрацию
+              Определение ветки
             </h2>
             <Description>
-              Пройди регистрацию и получи уникальный токен, который понадобиться для интеграции чат-бота на своем сайте
+              После отправки запроса, вы получите ответ на ваш вопрос
             </Description>
           </CardLayout>
 
           <CardLayout>
-            {/* <Icon src={codeIcon} alt="code icon" /> */}
+            <Icon src={loop} alt="loop icon" />
             <h2>
-              Пройди регистрацию
+              Ищет решение из существующих 
             </h2>
             <Description>
-              Пройди регистрацию и получи уникальный токен, который понадобиться для интеграции чат-бота на своем сайте
+              Выдается ответ
             </Description>
           </CardLayout>
 
           <CardLayout>
-            {/* <Icon src={messageIcon} alt="message icon" /> */}
+            <Icon src={folder} alt="folder   icon" />
             <h2>
-              Пройди регистрацию
+              Находит решение из инструкции
             </h2>
             <Description>
-              Пройди регистрацию и получи уникальный токен, который понадобиться для интеграции чат-бота на своем сайте
+              Просмотрите истории все своих обращений, их статус и предложенные решения
             </Description>
           </CardLayout>
 
@@ -61,9 +61,15 @@ const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 5% 8% 5% 8%;
-
-  .title{
+  padding: 0 8% 0 8%;
+  background: 
+    linear-gradient(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1)),
+    url(${bg});
+  background-size: cover;
+  background-position: bottom;
+  background-repeat: no-repeat;
+  image-rendering: optimizeQuality;
+  h1{
     @media (max-width: 725px) {
       font-size: 24px;
     }
@@ -80,7 +86,9 @@ const Card = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  border-radius: 10px;
+  position: relative;
+  bottom: 200px;
+  border-radius: 30px;
   background-color: #FFD200;
   padding: 50px;
   @media (max-width: 600px) {
@@ -89,7 +97,7 @@ const Card = styled.div`
 `
 const Grid = styled.div`
   display: grid;
-  grid-template-columns: auto auto;
+  grid-template-columns: 1fr 1fr;
   column-gap: 22px;
   row-gap: 22px;
   @media (max-width: 725px) {
@@ -101,8 +109,8 @@ const CardLayout = styled.div`
   background: white;
   text-align: left;
   h2{
-    color:#ffffff;
-    }
+    color: black;
+  }
   @media (max-width: 600px) {
     padding: 15px; 
     h2{
