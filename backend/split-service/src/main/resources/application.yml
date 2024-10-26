@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: split-service
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: rabbitmq
+    password: 1234
+
+app:
+  jwt:
+    subject: user-id
+    issuer: to-sibintek-app
+    secret: 12345678
+    duration: 3600
