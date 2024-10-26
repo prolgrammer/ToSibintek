@@ -31,48 +31,39 @@ export const ChatWindow = () => {
   }, [messages])
 
   return (
-    <>
-      <Container>
-        <div>
-          <Logo>
-            <img src={logo} alt="logo" style={{marginRight: '10px'}}/>
-            {SITES_NAME}
-          </Logo>
-          <h2>
-           Отправьте запрос
-          </h2>
-          <h3>
-            Оставьте свою заявку  — мы найдём решение быстрее!
-          </h3>
-        </div>
-        <Card>
-          <Window id="chatWindow">
-            {messages.map((msg, index) => (
-              <Message key={index} isBot={msg.startsWith("Бот:")}>
-                {msg}
-              </Message>
-            ))}
-          </Window>
-        </Card>
-        <Search
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          placeholder="Что делать?"
-          enterButton={"Отправить"}
-          onSearch={() =>sendMessage(input)}
-          loading={loading}
-        />
-      </Container>
-    </>
+    <Container>
+      <Logo>
+        <img src={logo} alt="logo" style={{marginRight: '10px'}}/>
+        {SITES_NAME}
+      </Logo>
+      <Card>
+        <Window id="chatWindow">
+          {messages.map((msg, index) => (
+            <Message key={index} isBot={msg.startsWith("Бот:")}>
+              {msg}
+            </Message>
+          ))}
+        </Window>
+      </Card>
+      <Search
+        value={input}
+        onChange={(e) => setInput(e.target.value)}
+        placeholder="Что делать?"
+        enterButton={"Отправить"}
+        onSearch={() =>sendMessage(input)}
+        loading={loading}
+      />
+    </Container>
   )
 }
 
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
+  align-items: center;
   background-color: white;
-  padding: 5% 15% 10% 5%;
+  padding: 5% 10% 10% 10%;
 `
 const Logo = styled.h1`
   display: flex;
