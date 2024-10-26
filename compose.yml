@@ -1,0 +1,8 @@
+services:
+  rabbitmq:
+    image: rabbitmq
+    environment:
+      - RABBITMQ_DEFAULT_USER=rabbitmq
+      - RABBITMQ_DEFAULT_PASS=1234
+    ports:
+      - 5672:5672
