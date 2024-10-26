@@ -1,4 +1,3 @@
-
 # Импорт необходимых библиотек
 import pandas as pd
 import re
@@ -12,6 +11,8 @@ from collections import Counter
 from imblearn.over_sampling import SMOTE
 from sklearn.linear_model import LogisticRegression
 from sklearn.preprocessing import LabelEncoder
+import joblib
+import os
 import random
 import nltk
 
@@ -91,6 +92,12 @@ y_pred_labels = le.inverse_transform(y_pred)
 print("Отчет классификации:")
 print(classification_report(y_test, y_pred_labels, zero_division=1))
 
+# Сохранение модели, кодировщика меток и токенизатора
+joblib.dump(classifier, "model/service_model/logistic_regression_model.pkl")
+joblib.dump(le, "model/service_model/label_encoder.pkl")
+joblib.dump(tokenizer, "model/service_model/tokenizer.pkl")
+print("Модель и вспомогательные файлы успешно сохранены в папке 'model'.")
+
 # Функция для получения топ-N сервисов для нового текста
 def get_top_predictions(text, model, classifier, top_n=3):
     text_vector = bert_text_to_vector(text, tokenizer, model)
@@ -98,6 +105,7 @@ def get_top_predictions(text, model, classifier, top_n=3):
     top_indices = probas.argsort()[-top_n:][::-1]
     top_classes = le.inverse_transform(top_indices)
     return [(top_classes[i], probas[i]) for i in range(top_n)]
+
 # Пример использования
 text = "Forget my password"
 top_services = get_top_predictions(text, model, classifier)
