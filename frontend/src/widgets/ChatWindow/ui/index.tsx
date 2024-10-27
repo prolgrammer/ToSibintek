@@ -3,22 +3,28 @@ import { Input } from "antd";
 import { useState, useEffect } from "react";
 import styled from "styled-components";
 import logo from "@public/logo.svg";
+import { AppDispatch, RootState } from "app/store";
+import { useDispatch, useSelector } from "react-redux";
+import { requestThunk } from "../model";
 
 export const ChatWindow = () => {
   const [messages, setMessages] = useState<string[]>([])
   const [input, setInput] = useState<string>("")
-  const [loading, setLoading] = useState<boolean>(false)
+  // const [loading, setLoading] = useState<boolean>(false)
+  const dispatch: AppDispatch = useDispatch()
+  const { error, loading} = useSelector((state: RootState) => state.request)
   const { Search } = Input
 
   const sendMessage = (message: string) => {
     if (message.trim()) {
-      setMessages((prevMessages) => [...prevMessages, `Вы: ${message}`])
+      setMessages((prevMessages) => [...prevMessages, error ? error : `Вы: ${message}`])
+      dispatch(requestThunk(message))
       setInput("")
-      setLoading(true)
+      // setLoading(true)
 
       setTimeout(() => {
         setMessages((prevMessages) => [...prevMessages, "Бот: This is a response!"])
-        setLoading(false)
+        // setLoading(false)
       }, 1000)
     }
   }
@@ -50,7 +56,7 @@ export const ChatWindow = () => {
         onChange={(e) => setInput(e.target.value)}
         placeholder="Что делать?"
         enterButton={"Отправить"}
-        onSearch={() =>sendMessage(input)}
+        onSearch={() => sendMessage(input)}
         loading={loading}
       />
     </Container>
