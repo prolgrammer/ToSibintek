@@ -7,7 +7,7 @@ rabbitmq_user = 'rabbitmq'
 rabbitmq_password = '1234'
 
 # Параметры очереди
-queue_name = 'neural_queue'
+queue_name = 'request-stage-2-events-topic-queue'
 message = 'Network connection problem'  # Пример сообщения
 
 # Создаем учетные данные для подключения
