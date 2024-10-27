@@ -23,9 +23,5 @@ public class RequestService {
         var event = RequestStage1Event.builder()
                 .user(user)
                 .request(requestDto.getRequest());
-        var test = ResponseDto.builder()
-                .request("David is Pupsen")
-                .build();
-        stompProducer.send(test);
     }
 }

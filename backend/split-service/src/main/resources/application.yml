@@ -26,13 +26,13 @@ logging:
 
 server:
   port: 8080
-  ssl:
-    enabled: true
-
-    key-store-type: PKCS12
-
-    key-alias: tosibintek
-
-    key-store: classpath:keystore.p12
-
-    key-store-password: 123456
+#  ssl:
+#    enabled: true
+#
+#    key-store-type: PKCS12
+#
+#    key-alias: tosibintek
+#
+#    key-store: classpath:keystore.p12
+#
+#    key-store-password: 123456

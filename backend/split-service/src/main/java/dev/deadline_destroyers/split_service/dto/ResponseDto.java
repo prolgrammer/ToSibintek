@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class ResponseDto {
     private String request;
+    private String user;
     private String time;
     private String stage;
     private String service;

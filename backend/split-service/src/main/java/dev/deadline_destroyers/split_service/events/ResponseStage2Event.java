@@ -12,6 +12,7 @@ import lombok.NoArgsConstructor;
 public class ResponseStage2Event {
     private String user;
     private String request;
+    private String response;
     private String service;
 
 }

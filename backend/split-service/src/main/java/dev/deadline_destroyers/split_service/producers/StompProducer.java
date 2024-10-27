@@ -10,9 +10,7 @@ import org.springframework.stereotype.Component;
 public class StompProducer {
     @Autowired
     private SimpMessagingTemplate template;
-    public void send(ResponseDto responseDto) {
-        var user = SecurityContextHolder.getContext()
-                        .getAuthentication().getName();
-        template.convertAndSendToUser(user, "/queue/messages" ,responseDto);
+    public void send(ResponseDto responseDto, String user) {
+        template.convertAndSend("/topic",responseDto);
     }
 }
