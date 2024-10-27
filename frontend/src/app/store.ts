@@ -1,10 +1,11 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { websocketMiddleware } from "./stomp";
-import { chatSlice } from "@pages/ExampleChat"
 import { webSocketSlice } from "@entities/webSocketSlice";
+import { requestSlice } from "@widgets/ChatWindow";
+// import { chatSlice } from "@entities/chatSlice";
 
 const rootReducer = combineReducers({
-  chat: chatSlice.reducer,
+  request: requestSlice.reducer,
   webSocket: webSocketSlice.reducer
 })
 
