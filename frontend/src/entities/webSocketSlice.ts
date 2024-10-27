@@ -1,14 +1,15 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { Client } from '@stomp/stompjs';
 import { RootState } from 'app/store';
 
 interface WebSocketState {
   isConnected: boolean
-  client: boolean
+  client: Client | null
 }
 
 const initialState: WebSocketState = {
   isConnected: false,
-  client: false,
+  client: null,
 }
 
 export const webSocketSlice = createSlice({
@@ -21,7 +22,7 @@ export const webSocketSlice = createSlice({
     disconnect(state) {
       state.isConnected = false
     },
-    setClient(state, action: PayloadAction<boolean>) {
+    setClient(state, action: PayloadAction<Client | null>) {
       state.client = action.payload
     },
     setConnectionStatus(state, action: PayloadAction<boolean>) {

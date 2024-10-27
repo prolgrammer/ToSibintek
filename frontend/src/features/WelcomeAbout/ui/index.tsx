@@ -9,7 +9,7 @@ export const WelcomeAbout = () => {
   return (
     <Container>
       <Card>
-        <h1>Найди ответ за считанные секунды</h1>
+        <h1>Принцип работы</h1>
         <Grid>
           <CardLayout>
             <Icon src={sign} alt="sign icon" />
@@ -17,7 +17,7 @@ export const WelcomeAbout = () => {
               Отправьте запрос  
             </h2>
             <Description>
-              Заполните форму, указывая все атрибуты
+              Формулировка и отправка запроса от пользователя
             </Description>
           </CardLayout>
           
@@ -27,7 +27,7 @@ export const WelcomeAbout = () => {
               Определение ветки
             </h2>
             <Description>
-              После отправки запроса, вы получите ответ на ваш вопрос
+              Анализ поступившего запроса и определение категории ветки, вывод возможных на экран
             </Description>
           </CardLayout>
 
@@ -37,7 +37,7 @@ export const WelcomeAbout = () => {
               Ищет решение из существующих 
             </h2>
             <Description>
-              Выдается ответ
+              Если запрос попадает в определенную ветку, система ищет среди существующих данных
             </Description>
           </CardLayout>
 
@@ -47,7 +47,7 @@ export const WelcomeAbout = () => {
               Находит решение из инструкции
             </h2>
             <Description>
-              Просмотрите истории все своих обращений, их статус и предложенные решения
+              Если в базе данных нет готового решения, система обращается к документации
             </Description>
           </CardLayout>
 
@@ -87,7 +87,7 @@ const Card = styled.div`
   align-items: center;
   flex-direction: column;
   position: relative;
-  bottom: 200px;
+  bottom: 150px;
   border-radius: 30px;
   background-color: #FFD200;
   padding: 50px;
@@ -100,7 +100,7 @@ const Grid = styled.div`
   grid-template-columns: 1fr 1fr;
   column-gap: 22px;
   row-gap: 22px;
-  @media (max-width: 725px) {
+  @media (max-width: 860px) {
     grid-template-columns: 1fr; 
   }
 `
