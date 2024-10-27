@@ -12,7 +12,7 @@ public class StompConfig implements WebSocketMessageBrokerConfigurer {
 
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
-        registry.addEndpoint("/ws");
+        registry.addEndpoint("/ws").setAllowedOrigins("http://localhost:3000");
     }
 
     @Override
@@ -21,4 +21,5 @@ public class StompConfig implements WebSocketMessageBrokerConfigurer {
         registry.setApplicationDestinationPrefixes("/app");
         registry.setUserDestinationPrefix("/users");
     }
+
 }
