@@ -9,9 +9,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class RequestStage4Event {
+public class ResponseStage4Event {
     private String user;
-    private String docs;
     private String request;
     private String service;
     private String response;

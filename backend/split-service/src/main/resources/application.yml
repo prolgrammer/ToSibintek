@@ -1,3 +1,5 @@
+server:
+  port: 8080
 spring:
   application:
     name: split-service
@@ -13,3 +15,12 @@ app:
     issuer: to-sibintek-app
     secret: 12345678
     duration: 3600
+
+logging:
+  level:
+    org:
+      springframework:
+        web:
+          socket:
+            config:
+              WebSocketMessageBrokerStats: TRACE
