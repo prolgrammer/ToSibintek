@@ -30,6 +30,7 @@ public class JwtFilter extends OncePerRequestFilter {
                 var id = jwtUtils.verifyAndRetrieveId(jwt);
                 var authentication = new JwtAuthenticationToken();
                 authentication.setId(id);
+                authentication.setAuthenticated(true);
                 if (SecurityContextHolder.getContext().getAuthentication() == null ||
                         !SecurityContextHolder.getContext().getAuthentication().isAuthenticated())
                     SecurityContextHolder.getContext().setAuthentication(authentication);

@@ -25,7 +25,7 @@ export const ExampleChatPage = () => {
     dispatch(webSocketSlice.actions.connect())
 
     fetchSession()
-  }, [dispatch])
+  }, [])
 
   return (
     <>

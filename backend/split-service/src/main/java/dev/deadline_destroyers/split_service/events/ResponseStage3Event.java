@@ -1,5 +1,6 @@
 package dev.deadline_destroyers.split_service.events;
 
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -9,9 +10,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class RequestStage4Event {
+public class ResponseStage3Event {
     private String user;
-    private String docs;
     private String request;
     private String service;
     private String response;
